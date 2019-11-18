@@ -2,7 +2,7 @@
 /**
  *
  * @author SF3
- * @copyright 2017 SF3Framework 2
+ * @copyright 2017 SF3Framework
  */
 namespace SF3\Core\Router;
 use SF3\Core\Router\Exception;

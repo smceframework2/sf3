@@ -3,13 +3,13 @@
 /**
  *
  * @author SF3
- * @copyright 2017 SF3Framework 2
+ * @copyright 2017 SF3Framework
  */
 
 namespace SF3\Security;
 
 use SF3\Http\HttpException;
-use SF3\Ef;
+use SF3\Sf;
 use SF3\Security\Csrf\Bridge;
 use SF3\Security\Csrf\CsrfInterface;
 
@@ -146,7 +146,7 @@ class Csrf implements CsrfInterface
 
 	public function postControl()
 	{
-		if (EF::app()->isPost() && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (Sf::app()->isPost() && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -160,7 +160,7 @@ class Csrf implements CsrfInterface
 	public function putControl()
 	{
 
-		if (EF::app()->GetMethod()==='PUT' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (Sf::app()->GetMethod()==='PUT' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -172,7 +172,7 @@ class Csrf implements CsrfInterface
 
 	public function deleteControl()
 	{
-		if (EF::app()->GetMethod()==='DELETE' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (Sf::app()->GetMethod()==='DELETE' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -185,7 +185,7 @@ class Csrf implements CsrfInterface
 
 	public function patchControl()
 	{
-		if (EF::app()->GetMethod()==='PATCH' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (Sf::app()->GetMethod()==='PATCH' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -198,7 +198,7 @@ class Csrf implements CsrfInterface
 
 	public function optionsControl()
 	{
-		if (EF::app()->GetMethod()==='OPTIONS' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (Sf::app()->GetMethod()==='OPTIONS' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -211,7 +211,7 @@ class Csrf implements CsrfInterface
 
 	public function getControl()
 	{
-		if (EF::app()->isGet() && !isset($_GET[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_GET[$this->namespace]) && $_GET[$this->namespace] != $this->readTokenFromStorage())) {
+		if (Sf::app()->isGet() && !isset($_GET[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_GET[$this->namespace]) && $_GET[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {

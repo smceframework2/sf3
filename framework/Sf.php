@@ -3,14 +3,14 @@
 /**
  *
  * @author SF3
- * @copyright 2017 SF3Framework 2
+ * @copyright 2017 SF3Framework
  */
 
 namespace SF3;
 
 use SF3\Components\i18n;
 
-class Ef
+class Sf
 {
 
 	private static $app;

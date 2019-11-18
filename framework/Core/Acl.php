@@ -3,13 +3,13 @@
 /**
  *
  * @author SF3
- * @copyright 2017 SF3Framework 2
+ * @copyright 2017 SF3Framework
  */
 
 namespace SF3\Core;
 
 use SF3\Http\HttpException;
-use SF3\Ef;
+use SF3\Sf;
 
 class Acl
 {
@@ -42,12 +42,12 @@ class Acl
         $control = false;
         $isaction=false;
 
-        $ip = Ef::app()->ip;
+        $ip = Sf::app()->ip;
 
 
         foreach ($this->rules as $key => $value) {
 
-            if (in_array(Ef::app()->action, $value["actions"])) {
+            if (in_array(Sf::app()->action, $value["actions"])) {
                 $control = true;
                 $isaction=true;
 
@@ -90,7 +90,7 @@ class Acl
     private function redirect($url)
     {
 
-        header("refresh:4;url=" . Ef::app()->baseUrl . "/" . $url);
+        header("refresh:4;url=" . Sf::app()->baseUrl . "/" . $url);
         throw new HttpException(404, "You do not have authority to allow");
         exit();
 

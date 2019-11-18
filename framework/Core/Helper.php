@@ -25,7 +25,7 @@ if (!function_exists('asset')) {
 	 */
 	function asset($file)
 	{
-		return SF3\Ef::app()->baseUrl . '/' . $file;
+		return SF3\Sf::app()->baseUrl . '/' . $file;
 	}
 }
 
@@ -52,7 +52,7 @@ if (!function_exists('url')) {
 	 */
 	function url($url)
 	{
-		return SF3\Ef::app()->baseUrl . '/' . $url;
+		return SF3\Sf::app()->baseUrl . '/' . $url;
 	}
 }
 

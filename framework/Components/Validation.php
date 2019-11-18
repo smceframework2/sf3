@@ -3,13 +3,13 @@
 /**
  *
  * @author SF3
- * @copyright 2017 SF3Framework 2
+ * @copyright 2017 SF3Framework
  */
 
 namespace SF3\Components;
 
 use SF3\App;
-use SF3\Ef;
+use SF3\Sf;
 use SF3\Extensions\Gump;
 use SF3\Http\Request;
 
@@ -119,7 +119,7 @@ class Validation
 	{
 		if (is_array($_GET) && count($_GET) > 0)
 			$_GET = $this->gump->filter($_GET, $data);
-		if (Ef::app()->GetMethod() != 'GET') {
+		if (Sf::app()->GetMethod() != 'GET') {
 			$_POST = $this->gump->filter($_POST, $data);
 		}
 		if ($this->request) {

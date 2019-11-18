@@ -2,7 +2,7 @@
 
 namespace SF3\Http\Request;
 
-use SF3\Ef;
+use SF3\Sf;
 use SF3\Http\Security;
 
 class File

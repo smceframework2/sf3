@@ -2,7 +2,7 @@
 
 namespace SF3\Http;
 
-use SF3\Ef;
+use SF3\Sf;
 
 class UserAgent
 {
@@ -170,6 +170,6 @@ class UserAgent
             $browser = 'NetFront';
         }
 
-        return ['platform' => $platform ?: null, 'browser' => $browser ?: null, 'version' => $version ?: null, "lang" => $lang = substr(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])?:"tr", 0, 2), 'ip' => Ef::app()->ip];
+        return ['platform' => $platform ?: null, 'browser' => $browser ?: null, 'version' => $version ?: null, "lang" => $lang = substr(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])?:"tr", 0, 2), 'ip' => Sf::app()->ip];
     }
 }
