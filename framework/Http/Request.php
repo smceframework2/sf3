@@ -42,26 +42,26 @@ class Request
 		return @$_SERVER['REQUEST_METHOD'] && $_SERVER['REQUEST_METHOD'] == $method;
 	}
 
-	public function Get($params)
+	public function get($param)
 	{
-		return $this->get->$params;
+		return $this->get->$param;
 	}
 
-	public function Post($params)
+	public function post($param)
 	{
-		return $this->post->$params;
+		return $this->post->$param;
 	}
 
-	public function File($params)
+	public function file($param)
 	{
-		return $this->file->$params;
+		return $this->file->$param;
 	}
 
-	public function Input($arr)
+	public function input($param)
 	{
 		$method = strtolower($this->getMethod() == 'GET' ? 'GET' : 'POST');
 
-		return $this->$method->$arr;
+		return $this->$method->$param;
 	}
 
 	public function validate($arr = [], $lang = "tr")
