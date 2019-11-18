@@ -1,0 +1,8 @@
+<?php
+
+use SF3\Core\Model;
+
+class [name] extends Model
+{
+
+}

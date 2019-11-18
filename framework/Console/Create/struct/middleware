@@ -1,0 +1,22 @@
+<?php
+
+use SF3\Http\Request;
+use SF3\Http\Response;
+use SF3\Core\Middleware;
+
+class [name] extends Middleware
+{
+
+	public function handle(Request $request)
+	{
+
+		return true;
+	}
+
+
+	public function terminate(Response $response)
+	{
+
+
+	}
+}
