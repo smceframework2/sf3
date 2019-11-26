@@ -24,6 +24,8 @@ DI::bind("loader",function(){
     $loader->setDir(array(
         dirname(__FILE__)."/main/controller/",
         dirname(__FILE__)."/main/model/",
+        dirname(__FILE__)."/main/listener/",
+        dirname(__FILE__)."/main/library/",
     ));
     $loader->register();
     return $loader;
