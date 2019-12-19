@@ -1,19 +1,19 @@
 <?php
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Core;
+namespace EF2\Core;
 
-use SF3\Core\DI\DISingleton;
-use SF3\Core\Router\Routes;
-use SF3\Core\Router\Route;
-use SF3\Core\Router\Request;
+use EF2\Core\DI\DISingleton;
+use EF2\Core\Router\Routes;
+use EF2\Core\Router\Route;
+use EF2\Core\Router\Request;
 use Exception;
-use SF3\Http\Request as Req;
-use SF3\Http\Response;
+use EF2\Http\Request as Req;
+use EF2\Http\Response;
 
 class Router
 {
@@ -95,7 +95,7 @@ class Router
 	/**
 	 * Matched route
 	 *
-	 * @var null|\SF3\Core\Router\Route
+	 * @var null|\EF2\Core\Router\Route
 	 * @access protected
 	 */
 	protected $_matchedRoute;
@@ -173,7 +173,7 @@ class Router
 	private   $_response;
 
 	/**
-	 * \SF3\Core\Router constructor
+	 * \EF2\Core\Router constructor
 	 *
 	 * @param boolean|null $defaultRoutes
 	 * @throws Exception
@@ -272,7 +272,7 @@ class Router
 	 *</code>
 	 *
 	 * @param int $uriSource
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function setUriSource($uriSource)
@@ -290,7 +290,7 @@ class Router
 	 * Set whether router must remove the extra slashes in the handled routes
 	 *
 	 * @param boolean $remove
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function removeExtraSlashes($remove)
@@ -307,7 +307,7 @@ class Router
 	 * Sets the name of the default namespace
 	 *
 	 * @param string $namespaceName
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function setDefaultNamespace($namespaceName)
@@ -325,7 +325,7 @@ class Router
 	 * Sets the name of the default module
 	 *
 	 * @param string $moduleName
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function setDefaultModule($moduleName)
@@ -343,7 +343,7 @@ class Router
 	 * Sets the default controller name
 	 *
 	 * @param string $controllerName
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function setDefaultController($controllerName)
@@ -361,7 +361,7 @@ class Router
 	 * Sets the default action name
 	 *
 	 * @param string $actionName
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function setDefaultAction($actionName)
@@ -387,7 +387,7 @@ class Router
 	 *</code>
 	 *
 	 * @param array $defaults
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function setDefaults($defaults)
@@ -726,11 +726,11 @@ class Router
 	 * @param string $pattern
 	 * @param string|array|null $paths
 	 * @param string|null $httpMethods
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function add($pattern, $paths = null, $httpMethods = null)
 	{
-		//Every route is internally stored as a SF3\Core\Router\Route
+		//Every route is internally stored as a EF2\Core\Router\Route
 
 		$route = new Routes($pattern, $paths, $httpMethods);
 
@@ -744,7 +744,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addGet($pattern, $paths = null)
 	{
@@ -756,7 +756,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addPost($pattern, $paths = null)
 	{
@@ -768,7 +768,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addPut($pattern, $paths = null)
 	{
@@ -780,7 +780,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addPatch($pattern, $paths = null)
 	{
@@ -792,7 +792,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addDelete($pattern, $paths = null)
 	{
@@ -804,7 +804,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addAny($pattern, $paths = null)
 	{
@@ -816,7 +816,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|null|array $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addOptions($pattern, $paths = null)
 	{
@@ -828,7 +828,7 @@ class Router
 	 *
 	 * @param string $pattern
 	 * @param string|array|null $paths
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 */
 	public function addHead($pattern, $paths = null)
 	{
@@ -838,8 +838,8 @@ class Router
 	/**
 	 * Mounts a group of routes in the router
 	 *
-	 * @param \SF3\Core\Router\Group $group
-	 * @return \SF3\Core\Router
+	 * @param \EF2\Core\Router\Group $group
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function mount($group)
@@ -884,7 +884,7 @@ class Router
 	 * Set a group of paths to be returned when none of the defined routes are matched
 	 *
 	 * @param array|string $paths
-	 * @return \SF3\Core\Router
+	 * @return \EF2\Core\Router
 	 * @throws Exception
 	 */
 	public function notFound($paths)
@@ -969,7 +969,7 @@ class Router
 	/**
 	 * Returns the route that matchs the handled URI
 	 *
-	 * @return \SF3\Core\Router\Route|null
+	 * @return \EF2\Core\Router\Route|null
 	 */
 	public function getMatchedRoute()
 	{
@@ -999,7 +999,7 @@ class Router
 	/**
 	 * Returns all the routes defined in the router
 	 *
-	 * @return \SF3\Core\Router\Route[]|null
+	 * @return \EF2\Core\Router\Route[]|null
 	 */
 	public function getRoutes()
 	{
@@ -1010,7 +1010,7 @@ class Router
 	 * Returns a route object by its id
 	 *
 	 * @param int $id
-	 * @return \SF3\Core\Router\Route|boolean
+	 * @return \EF2\Core\Router\Route|boolean
 	 * @throws Exception
 	 */
 	public function getRouteById($id)
@@ -1032,7 +1032,7 @@ class Router
 	 * Returns a route object by its name
 	 *
 	 * @param string $name
-	 * @return \SF3\Core\Router\Route
+	 * @return \EF2\Core\Router\Route
 	 * @throws Exception
 	 */
 	public function getRouteByName($name)

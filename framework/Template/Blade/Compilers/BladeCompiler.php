@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Template\Blade\Compilers;
+namespace EF2\Template\Blade\Compilers;
 
-use SF3\Template\Blade\Support\Arr;
-use SF3\Template\Blade\Support\Str;
+use EF2\Template\Blade\Support\Arr;
+use EF2\Template\Blade\Support\Str;
 
 class BladeCompiler extends Compiler implements CompilerInterface
 {

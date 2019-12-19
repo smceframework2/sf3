@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Extensions;
+namespace EF2\Extensions;
 
 use Bramus\Monolog\Formatter\ColoredLineFormatter;
 use Monolog\Formatter\LineFormatter;
@@ -106,7 +106,7 @@ class Log
         if (!file_exists(dirname($filename))) {
             mkdir(dirname($filename), 0777, true);
         }
-        $logger = new Logger('SF3');
+        $logger = new Logger('EF2');
         $logger->pushHandler($handler = new StreamHandler($filename, 5));
         $handler->setFormatter(new ColoredLineFormatter(null, self::$format));
 
@@ -119,7 +119,7 @@ class Log
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true);
         }
-        $logger = new Logger('SF3');
+        $logger = new Logger('EF2');
         $logger->pushHandler($handler = new StreamHandler($dir . 'ef-' . date('Y-m-d') . '.log', LOGGER::INFO));
         $handler->setFormatter(new ColoredLineFormatter(null, self::$format));
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace SF3\Template\Blade;
+namespace EF2\Template\Blade;
 
 use InvalidArgumentException;
-use SF3\Template\Blade\Filesystem;
+use EF2\Template\Blade\Filesystem;
 
 class FileViewFinder implements ViewFinderInterface
 {
     /**
      * The filesystem instance.
      *
-     * @var \SF3\TemplateFilesystem
+     * @var \EF2\TemplateFilesystem
      */
     protected $files;
 
@@ -45,7 +45,7 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Create a new file view loader instance.
      *
-     * @param  \SF3\TemplateFilesystem  $files
+     * @param  \EF2\TemplateFilesystem  $files
      * @param  array  $paths
      * @param  array  $extensions
      * @return void
@@ -259,7 +259,7 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Get the filesystem instance.
      *
-     * @return \SF3\TemplateFilesystem
+     * @return \EF2\TemplateFilesystem
      */
     public function getFilesystem()
     {

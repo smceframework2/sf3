@@ -1,13 +1,13 @@
 <?php
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
-namespace SF3\Core\Router;
-use SF3\Core\Router\Exception;
+namespace EF2\Core\Router;
+use EF2\Core\Router\Exception;
 /**
- * SF3\Core\Router\Route
+ * EF2\Core\Router\Route
  *
  * This class represents every route added to the router
  */
@@ -99,7 +99,7 @@ class Routes implements RouteInterface
     protected static $_uniqueId;
 
     /**
-     * \SF3\Core\Router\Route constructor
+     * \EF2\Core\Router\Route constructor
      *
      * @param string $pattern
      * @param array|null $paths
@@ -203,7 +203,7 @@ class Routes implements RouteInterface
      *</code>
      *
      * @param string|array $httpMethods
-     * @return \SF3\Core\Router\Route
+     * @return \EF2\Core\Router\Route
      * @throws Exception
      */
     public function via($httpMethods)
@@ -544,7 +544,7 @@ class Routes implements RouteInterface
      *</code>
      *
      * @param string $name
-     * @return \SF3\Core\Router\Route
+     * @return \EF2\Core\Router\Route
      * @throws Exception
      */
     public function setName($name)
@@ -564,7 +564,7 @@ class Routes implements RouteInterface
      * If the callback returns false the route is treaded as not matched
      *
      * @param callback $callback
-     * @return \SF3\Core\Router\Route
+     * @return \EF2\Core\Router\Route
      * @throws Exception
      */
     public function beforeMatch($callback)
@@ -669,7 +669,7 @@ class Routes implements RouteInterface
      *</code>
      *
      * @param string|array $httpMethods
-     * @return \SF3\Core\Router\Route
+     * @return \EF2\Core\Router\Route
      * @throws Exception
      */
     public function setHttpMethods($httpMethods)
@@ -702,7 +702,7 @@ class Routes implements RouteInterface
      *</code>
      *
      * @param string $hostname
-     * @return \SF3\Core\Router\Route
+     * @return \EF2\Core\Router\Route
      * @throws Exception
      */
     public function setHostname($hostname)
@@ -731,7 +731,7 @@ class Routes implements RouteInterface
      *
      * @param string $name
      * @param callable $converter
-     * @return \SF3\Core\Router\Route
+     * @return \EF2\Core\Router\Route
      * @throws Exception
      */
     public function convert($name, $converter)

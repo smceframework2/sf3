@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Security\Csrf;
+namespace EF2\Security\Csrf;
 
-use SF3\Security\Csrf\Adaptor\SessionAdaptor;
-use SF3\Security\Csrf\Adaptor\RedisAdaptor;
+use EF2\Security\Csrf\Adaptor\SessionAdaptor;
+use EF2\Security\Csrf\Adaptor\RedisAdaptor;
 
 class Bridge
 {

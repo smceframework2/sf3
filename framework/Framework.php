@@ -2,22 +2,22 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3;
+namespace EF2;
 
-use SF3\Components\Locale;
-use SF3\Core\Controller;
-use SF3\Http\HttpException;
-use SF3\Core\DI;
-use SF3\Core\DI\DISingleton;
-use SF3\Http\Request;
-use SF3\Http\Response;
-use SF3\Components\PHPImageWorkshop\ImageWorkshop;
+use EF2\Components\Locale;
+use EF2\Core\Controller;
+use EF2\Http\HttpException;
+use EF2\Core\DI;
+use EF2\Core\DI\DISingleton;
+use EF2\Http\Request;
+use EF2\Http\Response;
+use EF2\Components\PHPImageWorkshop\ImageWorkshop;
 
-define('SF3_PATH', dirname(__FILE__));
+define('EF2_PATH', dirname(__FILE__));
 
 class Framework
 {
@@ -50,8 +50,6 @@ class Framework
 		if ($this->restApi)
 			$this->checkRestApi();
 		ob_start();
-
-
 
 		$this->includeFile();
 		$this->autoloadRegister($redis, $cachetime);
@@ -88,8 +86,8 @@ class Framework
 
 	private function includeFile()
 	{
-		require SF3_PATH . "/Core/Helper.php";
-		require SF3_PATH . "/Autoload.php";
+		require EF2_PATH . "/Core/Helper.php";
+		require EF2_PATH . "/Autoload.php";
 	}
 
 	private function autoloadRegister($redis, $cachetime)
@@ -125,7 +123,6 @@ class Framework
 
 	public function SetLocales($timezone = 'Europe/Istanbul', ...$params)
 	{
-
 		Locale::SetTimeZone($timezone);
 		if ($params && count($params)) {
 			Locale::SetLocale(LC_ALL, $params);
@@ -151,7 +148,7 @@ class Framework
 	 */
 	private function isController()
 	{
-		if (class_exists(self::$controller) && is_subclass_of(self::$controller, 'SF3\Core\Controller')) {
+		if (class_exists(self::$controller) && is_subclass_of(self::$controller, 'EF2\Core\Controller')) {
 			return true;
 		} else {
 			return false;

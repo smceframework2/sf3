@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
-namespace SF3\Core\Router;
+namespace EF2\Core\Router;
 
 
 class Request

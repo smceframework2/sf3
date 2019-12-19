@@ -2,15 +2,15 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Security;
+namespace EF2\Security;
 
-use SF3\Core\Router\Exception;
-use SF3\Http\HttpException;
-use SF3\Security\Guard\Timepersecond;
+use EF2\Core\Router\Exception;
+use EF2\Http\HttpException;
+use EF2\Security\Guard\Timepersecond;
 
 class Guard
 {

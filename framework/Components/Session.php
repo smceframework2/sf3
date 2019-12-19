@@ -2,11 +2,11 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Components;
+namespace EF2\Components;
 
 class Session
 {

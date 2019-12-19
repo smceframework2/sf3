@@ -1,11 +1,11 @@
 <?php
 
-namespace SF3;
+namespace EF2;
 
-use SF3\Console\Create;
+use EF2\Console\Create;
 use \Exception;
-use SF3\Console\Colors;
-use SF3\Console\Load;
+use EF2\Console\Colors;
+use EF2\Console\Load;
 
 class Console
 {

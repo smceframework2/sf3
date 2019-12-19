@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Security\JWT;
+namespace EF2\Security\JWT;
 
-use SF3\Driver\Redis;
+use EF2\Driver\Redis;
 
 class JWTRegister
 {

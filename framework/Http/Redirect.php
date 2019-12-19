@@ -2,16 +2,16 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Http;
+namespace EF2\Http;
 
-use SF3\App;
-use SF3\Components\Session;
-use SF3\Core\DI;
-use SF3\Http\Request\Header;
+use EF2\App;
+use EF2\Components\Session;
+use EF2\Core\DI;
+use EF2\Http\Request\Header;
 
 class Redirect
 {

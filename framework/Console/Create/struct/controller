@@ -1,8 +1,8 @@
 <?php
 
-use SF3\Core\Controller;
-use SF3\Http\Request;
-use SF3\Http\Response;
+use EF2\Core\Controller;
+use EF2\Http\Request;
+use EF2\Http\Response;
 
 class [name] extends Controller
 {

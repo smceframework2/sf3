@@ -2,19 +2,19 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Http;
+namespace EF2\Http;
 
-use SF3\Core\Str;
-use SF3\Http\Request\File;
-use SF3\Http\Request\Get;
-use SF3\Http\Request\Post;
-use SF3\Http\Request\Filter;
-use SF3\Http\Request\Header;
-use SF3\Components\Validation;
+use EF2\Core\Str;
+use EF2\Http\Request\File;
+use EF2\Http\Request\Get;
+use EF2\Http\Request\Post;
+use EF2\Http\Request\Filter;
+use EF2\Http\Request\Header;
+use EF2\Components\Validation;
 
 class Request
 {
@@ -42,26 +42,26 @@ class Request
 		return @$_SERVER['REQUEST_METHOD'] && $_SERVER['REQUEST_METHOD'] == $method;
 	}
 
-	public function get($param)
+	public function Get($params)
 	{
-		return $this->get->$param;
+		return $this->get->$params;
 	}
 
-	public function post($param)
+	public function Post($params)
 	{
-		return $this->post->$param;
+		return $this->post->$params;
 	}
 
-	public function file($param)
+	public function File($params)
 	{
-		return $this->file->$param;
+		return $this->file->$params;
 	}
 
-	public function input($param)
+	public function Input($arr)
 	{
 		$method = strtolower($this->getMethod() == 'GET' ? 'GET' : 'POST');
 
-		return $this->$method->$param;
+		return $this->$method->$arr;
 	}
 
 	public function validate($arr = [], $lang = "tr")

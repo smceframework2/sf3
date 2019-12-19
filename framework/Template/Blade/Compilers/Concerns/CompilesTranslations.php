@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade\Compilers\Concerns;
+namespace EF2\Template\Blade\Compilers\Concerns;
 
 trait CompilesTranslations
 {

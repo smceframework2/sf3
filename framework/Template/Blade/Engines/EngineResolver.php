@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade\Engines;
+namespace EF2\Template\Blade\Engines;
 
 use Closure;
 use InvalidArgumentException;
@@ -41,7 +41,7 @@ class EngineResolver
      * Resolver an engine instance by name.
      *
      * @param  string  $engine
-     * @return \SF3\Template\Blade\Engines\EngineInterface
+     * @return \EF2\Template\Blade\Engines\EngineInterface
      * @throws \InvalidArgumentException
      */
     public function resolve($engine)

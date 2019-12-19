@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Components\PHPImageWorkshop\Exception;
+namespace EF2\Components\PHPImageWorkshop\Exception;
 
-use SF3\Components\PHPImageWorkshop\Exception\ImageWorkshopBaseException as ImageWorkshopBaseException;
+use EF2\Components\PHPImageWorkshop\Exception\ImageWorkshopBaseException as ImageWorkshopBaseException;
 
 /**
  * ImageWorkshopException

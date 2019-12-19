@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Security\Guard;
+namespace EF2\Security\Guard;
 class Timepersecond
 {
 	private $redis;

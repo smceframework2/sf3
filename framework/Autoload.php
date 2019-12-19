@@ -2,11 +2,11 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3;
+namespace EF2;
 
 
 
@@ -23,11 +23,11 @@ class Autoload
 	private function autoload($className)
 	{
 
+
+
 		if(!class_exists($className))
 		{
-
 			if ($this->isFramework($className)) {
-
 
 				$this->autoloadFramework($className);
 			} else {
@@ -53,7 +53,7 @@ class Autoload
 			$namespace = substr($className, 0, $lastNsPos);
 			$className = substr($className, $lastNsPos + 1);
 			$fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-			$fileName = SF3_PATH . str_replace($parts[0], "", $fileName);
+			$fileName = EF2_PATH . str_replace($parts[0], "", $fileName);
 
 		}
 		$fileName .= $className . ".php";
@@ -108,9 +108,7 @@ class Autoload
 	private function isFramework($className)
 	{
 		$ex = explode("\\", $className);
-
-		if (strtolower($ex[0]) == "sf3") {
-
+		if (strtolower($ex[0]) == "ef2") {
 			return true;
 		}
 

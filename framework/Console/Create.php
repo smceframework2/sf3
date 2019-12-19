@@ -1,10 +1,10 @@
 <?php
 
-namespace SF3\Console;
+namespace EF2\Console;
 
-use SF3\Console\Create\Controller;
-use SF3\Console\Create\Middleware;
-use SF3\Console\Create\Model;
+use EF2\Console\Create\Controller;
+use EF2\Console\Create\Middleware;
+use EF2\Console\Create\Model;
 
 class Create
 {

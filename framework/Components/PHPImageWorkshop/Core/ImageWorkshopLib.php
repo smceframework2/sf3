@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Components\PHPImageWorkshop\Core;
+namespace EF2\Components\PHPImageWorkshop\Core;
 
-use SF3\Components\PHPImageWorkshop\Core\Exception\ImageWorkshopLibException as ImageWorkshopLibException;
+use EF2\Components\PHPImageWorkshop\Core\Exception\ImageWorkshopLibException as ImageWorkshopLibException;
 
 /**
  * ImageWorkshopLib class
@@ -26,39 +26,39 @@ class ImageWorkshopLib
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param integer $containerWidth
-     * @param integer $containerHSF3
+     * @param integer $containerHeight
      * @param integer $layerWidth
-     * @param integer $layerHSF3
+     * @param integer $layerHeight
      * @param integer $layerPositionX
      * @param integer $layerPositionY
      * @param string $position
      *
      * @return array
      */
-    public static function calculatePositions($containerWidth, $containerHSF3, $layerWidth, $layerHSF3, $layerPositionX, $layerPositionY, $position = 'LT')
+    public static function calculatePositions($containerWidth, $containerHeight, $layerWidth, $layerHeight, $layerPositionX, $layerPositionY, $position = 'LT')
     {
         $position = strtolower($position);
 
         if ($position == 'rt') {
             $layerPositionX = $containerWidth - $layerWidth - $layerPositionX;
         } elseif ($position == 'lb') {
-            $layerPositionY = $containerHSF3 - $layerHSF3 - $layerPositionY;
+            $layerPositionY = $containerHeight - $layerHeight - $layerPositionY;
         } elseif ($position == 'rb') {
             $layerPositionX = $containerWidth - $layerWidth - $layerPositionX;
-            $layerPositionY = $containerHSF3 - $layerHSF3 - $layerPositionY;
+            $layerPositionY = $containerHeight - $layerHeight - $layerPositionY;
         } elseif ($position == 'mm') {
             $layerPositionX = (($containerWidth - $layerWidth) / 2) + $layerPositionX;
-            $layerPositionY = (($containerHSF3 - $layerHSF3) / 2) + $layerPositionY;
+            $layerPositionY = (($containerHeight - $layerHeight) / 2) + $layerPositionY;
         } elseif ($position == 'mt') {
             $layerPositionX = (($containerWidth - $layerWidth) / 2) + $layerPositionX;
         } elseif ($position == 'mb') {
             $layerPositionX = (($containerWidth - $layerWidth) / 2) + $layerPositionX;
-            $layerPositionY = $containerHSF3 - $layerHSF3 - $layerPositionY;
+            $layerPositionY = $containerHeight - $layerHeight - $layerPositionY;
         } elseif ($position == 'lm') {
-            $layerPositionY = (($containerHSF3 - $layerHSF3) / 2) + $layerPositionY;
+            $layerPositionY = (($containerHeight - $layerHeight) / 2) + $layerPositionY;
         } elseif ($position == 'rm') {
             $layerPositionX = $containerWidth - $layerWidth - $layerPositionX;
-            $layerPositionY = (($containerHSF3 - $layerHSF3) / 2) + $layerPositionY;
+            $layerPositionY = (($containerHeight - $layerHeight) / 2) + $layerPositionY;
         }
 
         return array(
@@ -87,17 +87,17 @@ class ImageWorkshopLib
      * Generate a new image resource var
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param string $color
      * @param integer $opacity
      *
      * @return resource
      */
-    public static function generateImage($width = 100, $hSF3 = 100, $color = 'ffffff', $opacity = 127)
+    public static function generateImage($width = 100, $height = 100, $color = 'ffffff', $opacity = 127)
     {
         $RGBColors = ImageWorkshopLib::convertHexToRGB($color);
 
-        $image = imagecreatetruecolor($width, $hSF3);
+        $image = imagecreatetruecolor($width, $height);
         imagesavealpha($image, true);
         $color = imagecolorallocatealpha($image, $RGBColors['R'], $RGBColors['G'], $RGBColors['B'], $opacity);
         imagefill($image, 0, 0, $color);
@@ -132,12 +132,12 @@ class ImageWorkshopLib
         $minY = min(array($box[1], $box[3], $box[5], $box[7]));
         $maxY = max(array($box[1], $box[3], $box[5], $box[7]));
         $width = ($maxX - $minX);
-        $hSF3 = ($maxY - $minY);
+        $height = ($maxY - $minY);
         $left = abs($minX) + $width;
-        $top = abs($minY) + $hSF3;
+        $top = abs($minY) + $height;
 
         // to calculate the exact bounding box, we write the text in a large image
-        $img = @imagecreatetruecolor($width << 2, $hSF3 << 2);
+        $img = @imagecreatetruecolor($width << 2, $height << 2);
         $white = imagecolorallocate($img, 255, 255, 255);
         $black = imagecolorallocate($img, 0, 0, 0);
         imagefilledrectangle($img, 0, 0, imagesx($img), imagesy($img), $black);
@@ -149,7 +149,7 @@ class ImageWorkshopLib
         $rleft = $w4 = $width<<2;
         $rright = 0;
         $rbottom = 0;
-        $rtop = $h4 = $hSF3<<2;
+        $rtop = $h4 = $height<<2;
 
         for ($x = 0; $x < $w4; $x++) {
             for ($y = 0; $y < $h4; $y++) {
@@ -168,7 +168,7 @@ class ImageWorkshopLib
             'left' => $left - $rleft,
             'top' => $top - $rtop,
             'width' => $rright - $rleft + 1,
-            'hSF3' => $rbottom - $rtop + 1,
+            'height' => $rbottom - $rtop + 1,
         );
     }
     

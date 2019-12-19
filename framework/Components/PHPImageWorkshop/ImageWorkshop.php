@@ -1,11 +1,11 @@
 <?php
 
-namespace SF3\Components\PHPImageWorkshop;
+namespace EF2\Components\PHPImageWorkshop;
 
 
-use SF3\Components\PHPImageWorkshop\Core\ImageWorkshopLayer as ImageWorkshopLayer;
-use SF3\Components\PHPImageWorkshop\Core\ImageWorkshopLib as ImageWorkshopLib;
-use SF3\Components\PHPImageWorkshop\Exception\ImageWorkshopException as ImageWorkshopException;
+use EF2\Components\PHPImageWorkshop\Core\ImageWorkshopLayer as ImageWorkshopLayer;
+use EF2\Components\PHPImageWorkshop\Core\ImageWorkshopLib as ImageWorkshopLib;
+use EF2\Components\PHPImageWorkshop\Exception\ImageWorkshopException as ImageWorkshopException;
 
 /**
  * ImageWorkshop class
@@ -118,7 +118,7 @@ class ImageWorkshop
     {
         $textDimensions = ImageWorkshopLib::getTextBoxDimension($fontSize, $textRotation, $fontPath, $text);
 
-        $layer = static::initVirginLayer($textDimensions['width'], $textDimensions['hSF3'], $backgroundColor);
+        $layer = static::initVirginLayer($textDimensions['width'], $textDimensions['height'], $backgroundColor);
         $layer->write($text, $fontPath, $fontSize, $fontColor, $textDimensions['left'], $textDimensions['top'], $textRotation);
         
         return $layer;
@@ -128,12 +128,12 @@ class ImageWorkshop
      * Initialize a new virgin layer
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param string $backgroundColor
      *
      * @return ImageWorkshopLayer
      */
-    public static function initVirginLayer($width = 100, $hSF3 = 100, $backgroundColor = null)
+    public static function initVirginLayer($width = 100, $height = 100, $backgroundColor = null)
     {
         $opacity = 0;
         
@@ -142,7 +142,7 @@ class ImageWorkshop
             $backgroundColor = 'ffffff';
         }
         
-        return new ImageWorkshopLayer(ImageWorkshopLib::generateImage($width, $hSF3, $backgroundColor, $opacity));
+        return new ImageWorkshopLayer(ImageWorkshopLib::generateImage($width, $height, $backgroundColor, $opacity));
     }
     
     /**

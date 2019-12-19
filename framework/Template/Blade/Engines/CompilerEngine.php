@@ -1,18 +1,18 @@
 <?php
 
-namespace SF3\Template\Blade\Engines;
+namespace EF2\Template\Blade\Engines;
 
 use Exception;
 use ErrorException;
-use SF3\Template\Blade\Support\Arr;
-use SF3\Template\Blade\Compilers\CompilerInterface;
+use EF2\Template\Blade\Support\Arr;
+use EF2\Template\Blade\Compilers\CompilerInterface;
 
 class CompilerEngine extends PhpEngine
 {
     /**
      * The Blade compiler instance.
      *
-     * @var \SF3\Template\Blade\Compilers\CompilerInterface
+     * @var \EF2\Template\Blade\Compilers\CompilerInterface
      */
     protected $compiler;
 
@@ -26,7 +26,7 @@ class CompilerEngine extends PhpEngine
     /**
      * Create a new Blade view engine instance.
      *
-     * @param  \SF3\Template\Blade\Compilers\CompilerInterface  $compiler
+     * @param  \EF2\Template\Blade\Compilers\CompilerInterface  $compiler
      * @return void
      */
     public function __construct(CompilerInterface $compiler)
@@ -94,7 +94,7 @@ class CompilerEngine extends PhpEngine
     /**
      * Get the compiler implementation.
      *
-     * @return \SF3\Template\Blade\Compilers\CompilerInterface
+     * @return \EF2\Template\Blade\Compilers\CompilerInterface
      */
     public function getCompiler()
     {

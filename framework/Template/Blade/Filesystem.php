@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade;
+namespace EF2\Template\Blade;
 
 use Exception;
 

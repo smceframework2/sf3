@@ -1,29 +1,29 @@
 <?php
 
-namespace SF3\Template\Blade;
+namespace EF2\Template\Blade;
 
 use Exception;
 use Throwable;
 use ArrayAccess;
 use BadMethodCallException;
-use SF3\Template\Blade\Support\Str;
-use SF3\Template\Blade\Contracts\Arrayable;
-use SF3\Template\Blade\Contracts\Renderable;
-use SF3\Template\Blade\Engines\EngineInterface;
+use EF2\Template\Blade\Support\Str;
+use EF2\Template\Blade\Contracts\Arrayable;
+use EF2\Template\Blade\Contracts\Renderable;
+use EF2\Template\Blade\Engines\EngineInterface;
 
 class View implements ArrayAccess
 {
     /**
      * The view factory instance.
      *
-     * @var \SF3\TemplateFactory
+     * @var \EF2\TemplateFactory
      */
     protected $factory;
 
     /**
      * The engine implementation.
      *
-     * @var \SF3\TemplateEngines\EngineInterface
+     * @var \EF2\TemplateEngines\EngineInterface
      */
     protected $engine;
 
@@ -51,8 +51,8 @@ class View implements ArrayAccess
     /**
      * Create a new view instance.
      *
-     * @param  \SF3\TemplateFactory  $factory
-     * @param  \SF3\TemplateEngines\EngineInterface  $engine
+     * @param  \EF2\TemplateFactory  $factory
+     * @param  \EF2\TemplateEngines\EngineInterface  $engine
      * @param  string  $view
      * @param  string  $path
      * @param  mixed  $data
@@ -247,7 +247,7 @@ class View implements ArrayAccess
     /**
      * Get the view factory instance.
      *
-     * @return \SF3\TemplateFactory
+     * @return \EF2\TemplateFactory
      */
     public function getFactory()
     {
@@ -257,7 +257,7 @@ class View implements ArrayAccess
     /**
      * Get the view's rendering engine.
      *
-     * @return \SF3\TemplateEngines\EngineInterface
+     * @return \EF2\TemplateEngines\EngineInterface
      */
     public function getEngine()
     {
@@ -359,7 +359,7 @@ class View implements ArrayAccess
      *
      * @param  string  $method
      * @param  array   $parameters
-     * @return \SF3\TemplateView
+     * @return \EF2\TemplateView
      *
      * @throws \BadMethodCallException
      */

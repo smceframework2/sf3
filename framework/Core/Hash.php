@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Core;
+namespace EF2\Core;
 
 class Hash
 {

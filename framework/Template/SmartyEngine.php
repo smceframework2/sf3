@@ -1,10 +1,10 @@
 <?php
 
-namespace SF3\Template;
+namespace EF2\Template;
 
-use SF3\App;
-use SF3\Core\Router\Exception;
-use SF3\Sf;
+use EF2\App;
+use EF2\Core\Router\Exception;
+use EF2\Ef;
 
 class SmartyEngine implements TemplateEngine
 {
@@ -64,8 +64,8 @@ class SmartyEngine implements TemplateEngine
 
 		$this->factory            = new \Smarty();
 		$this->factory->debugging = $this->debug;
-		$this->factory->assign('sitedir', Sf::app()->currenturl);
-		$this->factory->assign('themedir', Sf::app()->currenturl . '/assets');
+		$this->factory->assign('sitedir', EF::app()->currenturl);
+		$this->factory->assign('themedir', EF::app()->currenturl . '/assets');
 		$this->factory->setCompileDir($this->getCachePath());
 		$this->factory->setCacheDir($this->getCachePath());
 		$this->factory->caching = false;
@@ -77,15 +77,15 @@ class SmartyEngine implements TemplateEngine
 		$this->factory->force_compile    = false;
 
 
-		$this->factory->assign("ajax", Sf::app()->isAjax());
+		$this->factory->assign("ajax", Ef::app()->isAjax());
 		$this->factory->assign("postData", $_POST);
 		$this->factory->assign("req", $_GET);
-		$this->factory->assign("isPost", Sf::app()->isPost());
+		$this->factory->assign("isPost", Ef::app()->isPost());
 		$this->factory->assign("i18n", new class
 		{
 			public function __get($name)
 			{
-				return Sf::t($name);
+				return EF::t($name);
 			}
 		});
 

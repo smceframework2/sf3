@@ -2,13 +2,13 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3;
+namespace EF2;
 
-use SF3\Core\EventManager;
+use EF2\Core\EventManager;
 
 class App
 {

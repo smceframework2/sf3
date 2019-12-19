@@ -1,14 +1,14 @@
 <?php
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Core\Router;
+namespace EF2\Core\Router;
 
 use Exception;
-use SF3\Core\Router\Middleware\Action;
+use EF2\Core\Router\Middleware\Action;
 
 class Route
 {
@@ -230,7 +230,7 @@ class Route
 	{
 		$control = true;
 		foreach ($classNames as $key => $value) {
-			if (!class_exists($value) || !is_subclass_of($value, 'SF3\Core\Middleware')) {
+			if (!class_exists($value) || !is_subclass_of($value, 'EF2\Core\Middleware')) {
 				return [
 					"class"   => $value,
 					"control" => false

@@ -1,16 +1,16 @@
 <?php
 
-namespace SF3\Template\Blade\Compilers;
+namespace EF2\Template\Blade\Compilers;
 
 use InvalidArgumentException;
-use SF3\Template\Blade\Filesystem;
+use EF2\Template\Blade\Filesystem;
 
 abstract class Compiler
 {
     /**
      * The Filesystem instance.
      *
-     * @var \SF3\Template\Blade\Filesystem
+     * @var \EF2\Template\Blade\Filesystem
      */
     protected $files;
 
@@ -24,7 +24,7 @@ abstract class Compiler
     /**
      * Create a new compiler instance.
      *
-     * @param  \SF3\Template\Blade\Filesystem  $files
+     * @param  \EF2\Template\Blade\Filesystem  $files
      * @param  string  $cachePath
      * @return void
      *

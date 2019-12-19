@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Http\Curl;
+namespace EF2\Http\Curl;
 
 class CaseInsensitiveArray implements \ArrayAccess, \Countable, \Iterator
 {

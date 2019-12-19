@@ -1,8 +1,8 @@
 <?php
 
-use SF3\Http\Request;
-use SF3\Http\Response;
-use SF3\Core\Middleware;
+use EF2\Http\Request;
+use EF2\Http\Response;
+use EF2\Core\Middleware;
 
 class [name] extends Middleware
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade\Concerns;
+namespace EF2\Template\Blade\Concerns;
 
 use InvalidArgumentException;
 

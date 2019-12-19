@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Console;
+namespace EF2\Console;
 
 class Colors
 {

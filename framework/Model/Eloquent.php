@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Model;
+namespace EF2\Model;
 
 use Illuminate\Database\Eloquent\Model as Model;
-use SF3\Model\Eloquent\Criteriainject;
+use EF2\Model\Eloquent\Criteriainject;
 
 class Eloquent extends Model
 {

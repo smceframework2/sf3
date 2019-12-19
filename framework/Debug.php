@@ -2,13 +2,13 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3;
+namespace EF2;
 
-use SF3\Http\HttpException;
+use EF2\Http\HttpException;
 
 class Debug
 {
@@ -187,18 +187,18 @@ class Debug
                                 margin-bottom: 30px;
                             }
                             .line{
-                                font-wSF3: bold;
+                                font-weight: bold;
                                 margin-right: 10px;
                             }
                             .content{
                                 padding: 20px;
                                 font-size:18px;
                                 background: #e6e88d;
-                                min-hSF3: 100%;
+                                min-height: 100%;
                                 overflow-y : auto;
                             }
                             .hr{
-                                hSF3:1px;
+                                height:1px;
                                 background: #333;
                                 width:100%;
                               
@@ -209,7 +209,7 @@ class Debug
                     
                     
                     <div class="header-content">
-                        <div class="framework">SF3 Framework 2</div>
+                        <div class="framework">Eight Framework 2</div>
                         <div class="error"> <span class="line">Line ' . (isset($errorlist[0]["errline"]) ? $errorlist[0]["errline"] : "") . ':</span> ' . (isset($errorlist[0]["errfile"]) ? $errorlist[0]["errfile"] : "") . '</div>
                     </div>
                     

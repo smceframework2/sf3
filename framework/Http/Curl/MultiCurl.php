@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Http\Curl;
+namespace EF2\Http\Curl;
 
-use SF3\Http\Curl;
+use EF2\Http\Curl;
 
 class MultiCurl
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Http;
+namespace EF2\Http;
 
-use SF3\Sf;
+use EF2\Ef;
 
 class UserAgent
 {
@@ -170,6 +170,6 @@ class UserAgent
             $browser = 'NetFront';
         }
 
-        return ['platform' => $platform ?: null, 'browser' => $browser ?: null, 'version' => $version ?: null, "lang" => $lang = substr(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])?:"tr", 0, 2), 'ip' => Sf::app()->ip];
+        return ['platform' => $platform ?: null, 'browser' => $browser ?: null, 'version' => $version ?: null, "lang" => $lang = substr(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])?:"tr", 0, 2), 'ip' => Ef::app()->ip];
     }
 }

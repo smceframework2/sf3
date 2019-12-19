@@ -25,7 +25,7 @@ if (!function_exists('asset')) {
 	 */
 	function asset($file)
 	{
-		return SF3\Sf::app()->baseUrl . '/' . $file;
+		return EF2\Ef::app()->baseUrl . '/' . $file;
 	}
 }
 
@@ -35,11 +35,11 @@ if (!function_exists('redirect')) {
 	 *
 	 * @param   string $url
 	 * @param   int $delay
-	 * @return  \SF3\Http\Redirect
+	 * @return  \EF2\Http\Redirect
 	 */
 	function redirect($url = null, $delay = -1)
 	{
-		return new \SF3\Http\Redirect($url, $delay);
+		return new \EF2\Http\Redirect($url, $delay);
 	}
 }
 
@@ -52,7 +52,7 @@ if (!function_exists('url')) {
 	 */
 	function url($url)
 	{
-		return SF3\Sf::app()->baseUrl . '/' . $url;
+		return EF2\Ef::app()->baseUrl . '/' . $url;
 	}
 }
 
@@ -65,7 +65,7 @@ if (!function_exists('Collect')) {
 	 */
 	function Collect($array)
 	{
-		return new \SF3\Core\Collection($array);
+		return new \EF2\Core\Collection($array);
 	}
 }
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace SF3\Template\Blade;
+namespace EF2\Template\Blade;
 
-use SF3\Template\Blade\Support\Arr;
-use SF3\Template\Blade\Support\Str;
+use EF2\Template\Blade\Support\Arr;
+use EF2\Template\Blade\Support\Str;
 use InvalidArgumentException;
-use SF3\Template\Blade\Contracts\Arrayable;
-use SF3\Template\Blade\Engines\EngineResolver;
+use EF2\Template\Blade\Contracts\Arrayable;
+use EF2\Template\Blade\Engines\EngineResolver;
 
 class Factory
 {
@@ -18,14 +18,14 @@ class Factory
     /**
      * The engine implementation.
      *
-     * @var \SF3\Template\Blade\Engines\EngineResolver
+     * @var \EF2\Template\Blade\Engines\EngineResolver
      */
     protected $engines;
 
     /**
      * The view finder implementation.
      *
-     * @var \SF3\Template\Blade\ViewFinderInterface
+     * @var \EF2\Template\Blade\ViewFinderInterface
      */
     protected $finder;
 
@@ -57,8 +57,8 @@ class Factory
     /**
      * Create a new view factory instance.
      *
-     * @param  \SF3\Template\Blade\Engines\EngineResolver  $engines
-     * @param  \SF3\Template\Blade\ViewFinderInterface  $finder
+     * @param  \EF2\Template\Blade\Engines\EngineResolver  $engines
+     * @param  \EF2\Template\Blade\ViewFinderInterface  $finder
      * @return void
      */
     public function __construct(EngineResolver $engines, ViewFinderInterface $finder)
@@ -75,7 +75,7 @@ class Factory
      * @param  string  $path
      * @param  array   $data
      * @param  array   $mergeData
-     * @return \SF3\Template\Blade\View
+     * @return \EF2\Template\Blade\View
      */
     public function file($path, $data = [], $mergeData = [])
     {
@@ -90,7 +90,7 @@ class Factory
      * @param  string  $view
      * @param  array   $data
      * @param  array   $mergeData
-     * @return \SF3\Template\Blade\View
+     * @return \EF2\Template\Blade\View
      */
     public function make($view, $data = [], $mergeData = [])
     {
@@ -188,7 +188,7 @@ class Factory
      * @param  string  $view
      * @param  string  $path
      * @param  array  $data
-     * @return \SF3\Template\Blade\View
+     * @return \EF2\Template\Blade\View
      */
     protected function viewInstance($view, $path, $data)
     {
@@ -216,7 +216,7 @@ class Factory
      * Get the appropriate view engine for the given path.
      *
      * @param  string  $path
-     * @return \SF3\Template\Blade\Engines\EngineInterface
+     * @return \EF2\Template\Blade\Engines\EngineInterface
      *
      * @throws \InvalidArgumentException
      */
@@ -406,7 +406,7 @@ class Factory
     /**
      * Get the engine resolver instance.
      *
-     * @return \SF3\Template\Blade\Engines\EngineResolver
+     * @return \EF2\Template\Blade\Engines\EngineResolver
      */
     public function getEngineResolver()
     {
@@ -416,7 +416,7 @@ class Factory
     /**
      * Get the view finder instance.
      *
-     * @return \SF3\Template\Blade\ViewFinderInterface
+     * @return \EF2\Template\Blade\ViewFinderInterface
      */
     public function getFinder()
     {
@@ -426,7 +426,7 @@ class Factory
     /**
      * Set the view finder instance.
      *
-     * @param  \SF3\Template\Blade\ViewFinderInterface  $finder
+     * @param  \EF2\Template\Blade\ViewFinderInterface  $finder
      * @return void
      */
     public function setFinder(ViewFinderInterface $finder)

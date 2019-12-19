@@ -1,11 +1,11 @@
 <?php
 
-namespace SF3\Components\PHPImageWorkshop\Core;
+namespace EF2\Components\PHPImageWorkshop\Core;
 
-use SF3\Components\PHPImageWorkshop\Exif\ExifOrientations;
-use SF3\Components\PHPImageWorkshop\ImageWorkshop as ImageWorkshop;
-use SF3\Components\PHPImageWorkshop\Core\ImageWorkshopLib as ImageWorkshopLib;
-use SF3\Components\PHPImageWorkshop\Core\Exception\ImageWorkshopLayerException as ImageWorkshopLayerException;
+use EF2\Components\PHPImageWorkshop\Exif\ExifOrientations;
+use EF2\Components\PHPImageWorkshop\ImageWorkshop as ImageWorkshop;
+use EF2\Components\PHPImageWorkshop\Core\ImageWorkshopLib as ImageWorkshopLib;
+use EF2\Components\PHPImageWorkshop\Core\Exception\ImageWorkshopLayerException as ImageWorkshopLayerException;
 
 /**
  * ImageWorkshopLayer class
@@ -32,12 +32,12 @@ class ImageWorkshopLayer
     protected $width;
 
     /**
-     * @var hSF3
+     * @var height
      *
-     * HSF3 of the group model
+     * Height of the group model
      * Default: 600
      */
-    protected $hSF3;
+    protected $height;
 
     /**
      * @var layers
@@ -161,7 +161,7 @@ class ImageWorkshopLayer
         }
 
         $this->width = imagesx($image);
-        $this->hSF3 = imagesy($image);
+        $this->height = imagesy($image);
         $this->image = $image;
         $this->exif = $exif;
         $this->layers = $this->layerLevels = $this->layerPositions = array();
@@ -417,7 +417,7 @@ class ImageWorkshopLayer
             $layerPositions = $this->getLayerPositions($layerId);
             $layer = $this->getLayer($layerId);
             $layerWidth = $layer->getWidth();
-            $layerHSF3 = $layer->getHSF3();
+            $layerHeight = $layer->getHeight();
             $layerPositionX = $this->layerPositions[$layerId]['x'];
             $layerPositionY = $this->layerPositions[$layerId]['y'];
 
@@ -425,15 +425,15 @@ class ImageWorkshopLayer
                 $underLayerId = $this->layerLevels[$layerLevel - 1];
                 $underLayer = $this->getLayer($underLayerId);
                 $underLayerWidth = $underLayer->getWidth();
-                $underLayerHSF3 = $underLayer->getHSF3();
+                $underLayerHeight = $underLayer->getHeight();
                 $underLayerPositionX = $this->layerPositions[$underLayerId]['x'];
                 $underLayerPositionY = $this->layerPositions[$underLayerId]['y'];
 
                 $totalWidthLayer = $layerWidth + $layerPositionX;
-                $totalHSF3Layer = $layerHSF3 + $layerPositionY;
+                $totalHeightLayer = $layerHeight + $layerPositionY;
 
                 $totalWidthUnderLayer = $underLayerWidth + $underLayerPositionX;
-                $totalHSF3UnderLayer = $underLayerHSF3 + $underLayerPositionY;
+                $totalHeightUnderLayer = $underLayerHeight + $underLayerPositionY;
 
                 $minLayerPositionX = $layerPositionX;
 
@@ -453,13 +453,13 @@ class ImageWorkshopLayer
                     $layerTmpWidth = $totalWidthUnderLayer - $minLayerPositionX;
                 }
 
-                if ($totalHSF3Layer > $totalHSF3UnderLayer) {
-                    $layerTmpHSF3 = $totalHSF3Layer - $minLayerPositionY;
+                if ($totalHeightLayer > $totalHeightUnderLayer) {
+                    $layerTmpHeight = $totalHeightLayer - $minLayerPositionY;
                 } else {
-                    $layerTmpHSF3 = $totalHSF3UnderLayer - $minLayerPositionY;
+                    $layerTmpHeight = $totalHeightUnderLayer - $minLayerPositionY;
                 }
 
-                $layerTmp = ImageWorkshop::initVirginLayer($layerTmpWidth, $layerTmpHSF3);
+                $layerTmp = ImageWorkshop::initVirginLayer($layerTmpWidth, $layerTmpHeight);
 
                 $layerTmp->addLayer(1, $underLayer, $underLayerPositionX - $minLayerPositionX, $underLayerPositionY - $minLayerPositionY);
                 $layerTmp->addLayer(2, $layer, $layerPositionX - $minLayerPositionX, $layerPositionY - $minLayerPositionY);
@@ -507,7 +507,7 @@ class ImageWorkshopLayer
     {
         if ($unit == self::UNIT_PERCENT) {
             $positionX = round(($positionX / 100) * $this->width);
-            $positionY = round(($positionY / 100) * $this->hSF3);
+            $positionY = round(($positionY / 100) * $this->height);
         }
 
         imagecopy($this->image, $image, $positionX, $positionY, 0, 0, imagesx($image), imagesy($image));
@@ -649,7 +649,7 @@ class ImageWorkshopLayer
      * Resize the layer by specifying pixel
      *
      * @param integer $newWidth
-     * @param integer $newHSF3
+     * @param integer $newHeight
      * @param boolean $converseProportion
      * @param integer $positionX
      * @param integer $positionY
@@ -657,18 +657,18 @@ class ImageWorkshopLayer
      *
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
-     * $positionX, $positionY, $position can be ignored unless you choose a new width AND a new hSF3 AND to conserve proportion.
+     * $positionX, $positionY, $position can be ignored unless you choose a new width AND a new height AND to conserve proportion.
      */
-    public function resizeInPixel($newWidth = null, $newHSF3 = null, $converseProportion = false, $positionX = 0, $positionY = 0, $position = 'MM')
+    public function resizeInPixel($newWidth = null, $newHeight = null, $converseProportion = false, $positionX = 0, $positionY = 0, $position = 'MM')
     {
-        $this->resize(self::UNIT_PIXEL, $newWidth, $newHSF3, $converseProportion, $positionX, $positionY, $position);
+        $this->resize(self::UNIT_PIXEL, $newWidth, $newHeight, $converseProportion, $positionX, $positionY, $position);
     }
 
     /**
      * Resize the layer by specifying a percent
      *
      * @param float $percentWidth
-     * @param float $percentHSF3
+     * @param float $percentHeight
      * @param boolean $converseProportion
      * @param integer $positionX
      * @param integer $positionY
@@ -676,32 +676,32 @@ class ImageWorkshopLayer
      *
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
-     * $positionX, $positionY, $position can be ignored unless you choose a new width AND a new hSF3 AND to conserve proportion.
+     * $positionX, $positionY, $position can be ignored unless you choose a new width AND a new height AND to conserve proportion.
      */
-    public function resizeInPercent($percentWidth = null, $percentHSF3 = null, $converseProportion = false, $positionX = 0, $positionY = 0, $position = 'MM')
+    public function resizeInPercent($percentWidth = null, $percentHeight = null, $converseProportion = false, $positionX = 0, $positionY = 0, $position = 'MM')
     {
-        $this->resize(self::UNIT_PERCENT, $percentWidth, $percentHSF3, $converseProportion, $positionX, $positionY, $position);
+        $this->resize(self::UNIT_PERCENT, $percentWidth, $percentHeight, $converseProportion, $positionX, $positionY, $position);
     }
     
     /**
      * Resize the layer to fit a bounding box by specifying pixel
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param boolean $converseProportion
      */
-    public function resizeToFit($width, $hSF3, $converseProportion = false)
+    public function resizeToFit($width, $height, $converseProportion = false)
     {
-        if ($this->getWidth() <= $width && $this->getHSF3() <= $hSF3) {
+        if ($this->getWidth() <= $width && $this->getHeight() <= $height) {
             return;
         }
 
         if (!$converseProportion) {
             $width = min($width, $this->getWidth());
-            $hSF3 = min($hSF3, $this->getHSF3());
+            $height = min($height, $this->getHeight());
         }
         
-        $this->resize(self::UNIT_PIXEL, $width, $hSF3, $converseProportion ? 2 : false);
+        $this->resize(self::UNIT_PIXEL, $width, $height, $converseProportion ? 2 : false);
     }
     
     /**
@@ -709,7 +709,7 @@ class ImageWorkshopLayer
      *
      * @param string $unit Use one of `UNIT_*` constants, "UNIT_PIXEL" by default
      * @param mixed $newWidth (integer or float)
-     * @param mixed $newHSF3 (integer or float)
+     * @param mixed $newHeight (integer or float)
      * @param boolean $converseProportion
      * @param mixed $positionX (integer or float)
      * @param mixed $positionY (integer or float)
@@ -717,18 +717,18 @@ class ImageWorkshopLayer
      *
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
-     * $positionX, $positionY, $position can be ignored unless you choose a new width AND a new hSF3 AND to conserve proportion.
+     * $positionX, $positionY, $position can be ignored unless you choose a new width AND a new height AND to conserve proportion.
      */
-    public function resize($unit = self::UNIT_PIXEL, $newWidth = null, $newHSF3 = null, $converseProportion = false, $positionX = 0, $positionY = 0, $position = 'MM')
+    public function resize($unit = self::UNIT_PIXEL, $newWidth = null, $newHeight = null, $converseProportion = false, $positionX = 0, $positionY = 0, $position = 'MM')
     {
-        if (is_numeric($newWidth) || is_numeric($newHSF3)) {
+        if (is_numeric($newWidth) || is_numeric($newHeight)) {
             if ($unit == self::UNIT_PERCENT) {
                 if ($newWidth) {
                     $newWidth = round(($newWidth / 100) * $this->width);
                 }
                 
-                if ($newHSF3) {
-                    $newHSF3 = round(($newHSF3 / 100) * $this->hSF3);
+                if ($newHeight) {
+                    $newHeight = round(($newHeight / 100) * $this->height);
                 }
             }
             
@@ -736,30 +736,30 @@ class ImageWorkshopLayer
                 $newWidth = 1;
             }
             
-            if (is_numeric($newHSF3) && $newHSF3 <= 0) {
-                $newHSF3 = 1;
+            if (is_numeric($newHeight) && $newHeight <= 0) {
+                $newHeight = 1;
             }
         
             if ($converseProportion) { // Proportion are conserved
 
-                if ($newWidth && $newHSF3) { // Proportions + $newWidth + $newHSF3
+                if ($newWidth && $newHeight) { // Proportions + $newWidth + $newHeight
                     
-                    if ($this->getWidth() > $this->getHSF3()) {
+                    if ($this->getWidth() > $this->getHeight()) {
                         $this->resizeInPixel($newWidth, null, true);
                         
-                        if ($this->getHSF3() > $newHSF3) {
-                            $this->resizeInPixel(null, $newHSF3, true);
+                        if ($this->getHeight() > $newHeight) {
+                            $this->resizeInPixel(null, $newHeight, true);
                         }
                     } else {
-                        $this->resizeInPixel(null, $newHSF3, true);
+                        $this->resizeInPixel(null, $newHeight, true);
                         
                         if ($this->getWidth() > $newWidth) {
                             $this->resizeInPixel($newWidth, null, true);
                         }
                     }
                     
-                    if ($converseProportion !== 2 && ($this->getWidth() != $newWidth || $this->getHSF3() != $newHSF3)) {
-                        $layerTmp = ImageWorkshop::initVirginLayer($newWidth, $newHSF3);
+                    if ($converseProportion !== 2 && ($this->getWidth() != $newWidth || $this->getHeight() != $newHeight)) {
+                        $layerTmp = ImageWorkshop::initVirginLayer($newWidth, $newHeight);
                         
                         $layerTmp->addLayer(1, $this, $positionX, $positionY, $position);
                         
@@ -773,7 +773,7 @@ class ImageWorkshopLayer
                         // Update current object
                         
                         $this->width = $layerTmp->getWidth();
-                        $this->hSF3 = $layerTmp->getHSF3();
+                        $this->height = $layerTmp->getHeight();
                         $this->layerLevels = $layerTmp->layers[1]->getLayerLevels();
                         $this->layerPositions = $layerTmp->layers[1]->getLayerPositions();
                         $this->layers = $layerTmp->layers[1]->getLayers();
@@ -794,35 +794,35 @@ class ImageWorkshopLayer
                     return;
                 } elseif ($newWidth) {
                     $widthResizePercent = $newWidth / ($this->width / 100);
-                    $newHSF3 = round(($widthResizePercent / 100) * $this->hSF3);
-                    $hSF3ResizePercent = $widthResizePercent;
-                } elseif ($newHSF3) {
-                    $hSF3ResizePercent = $newHSF3 / ($this->hSF3 / 100);
-                    $newWidth = round(($hSF3ResizePercent / 100) * $this->width);
-                    $widthResizePercent = $hSF3ResizePercent;
+                    $newHeight = round(($widthResizePercent / 100) * $this->height);
+                    $heightResizePercent = $widthResizePercent;
+                } elseif ($newHeight) {
+                    $heightResizePercent = $newHeight / ($this->height / 100);
+                    $newWidth = round(($heightResizePercent / 100) * $this->width);
+                    $widthResizePercent = $heightResizePercent;
                 }
-            } elseif (($newWidth && !$newHSF3) || (!$newWidth && $newHSF3)) { // New width OR new hSF3 is given
+            } elseif (($newWidth && !$newHeight) || (!$newWidth && $newHeight)) { // New width OR new height is given
 
                 if ($newWidth) {
                     $widthResizePercent = $newWidth / ($this->width / 100);
-                    $hSF3ResizePercent = 100;
-                    $newHSF3 = $this->hSF3;
+                    $heightResizePercent = 100;
+                    $newHeight = $this->height;
                 } else {
-                    $hSF3ResizePercent = $newHSF3 / ($this->hSF3 / 100);
+                    $heightResizePercent = $newHeight / ($this->height / 100);
                     $widthResizePercent = 100;
                     $newWidth = $this->width;
                 }
-            } else { // New width AND new hSF3 are given
+            } else { // New width AND new height are given
 
                 $widthResizePercent = $newWidth / ($this->width / 100);
-                $hSF3ResizePercent = $newHSF3 / ($this->hSF3 / 100);
+                $heightResizePercent = $newHeight / ($this->height / 100);
             }
 
             // Update the layer positions in the stack
 
             foreach ($this->layerPositions as $layerId => $layerPosition) {
                 $newPosX = round(($widthResizePercent / 100) * $layerPosition['x']);
-                $newPosY = round(($hSF3ResizePercent / 100) * $layerPosition['y']);
+                $newPosY = round(($heightResizePercent / 100) * $layerPosition['y']);
 
                 $this->changePosition($layerId, $newPosX, $newPosY);
             }
@@ -832,11 +832,11 @@ class ImageWorkshopLayer
             $layers = $this->layers;
 
             foreach ($layers as $key => $layer) {
-                $layer->resizeInPercent($widthResizePercent, $hSF3ResizePercent);
+                $layer->resizeInPercent($widthResizePercent, $heightResizePercent);
                 $this->layers[$key] = $layer;
             }
 
-            $this->resizeBackground($newWidth, $newHSF3); // Resize the layer
+            $this->resizeBackground($newWidth, $newHeight); // Resize the layer
         }
     }
 
@@ -875,7 +875,7 @@ class ImageWorkshopLayer
             $newLargestSideWidth = round(($newLargestSideWidth / 100) * $this->getLargestSideWidth());
         }
 
-        if ($this->getWidth() > $this->getHSF3()) {
+        if ($this->getWidth() > $this->getHeight()) {
             $this->resizeInPixel($newLargestSideWidth, null, $converseProportion);
         } else {
             $this->resizeInPixel(null, $newLargestSideWidth, $converseProportion);
@@ -917,7 +917,7 @@ class ImageWorkshopLayer
             $newNarrowSideWidth = round(($newNarrowSideWidth / 100) * $this->getNarrowSideWidth());
         }
 
-        if ($this->getWidth() < $this->getHSF3()) {
+        if ($this->getWidth() < $this->getHeight()) {
             $this->resizeInPixel($newNarrowSideWidth, null, $converseProportion);
         } else {
             $this->resizeInPixel(null, $newNarrowSideWidth, $converseProportion);
@@ -931,14 +931,14 @@ class ImageWorkshopLayer
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param integer $positionX
      * @param integer $positionY
      * @param string $position
      */
-    public function cropInPixel($width = 0, $hSF3 = 0, $positionX = 0, $positionY = 0, $position = 'LT')
+    public function cropInPixel($width = 0, $height = 0, $positionX = 0, $positionY = 0, $position = 'LT')
     {
-        $this->crop(self::UNIT_PIXEL, $width, $hSF3, $positionX, $positionY, $position);
+        $this->crop(self::UNIT_PIXEL, $width, $height, $positionX, $positionY, $position);
     }
 
     /**
@@ -948,14 +948,14 @@ class ImageWorkshopLayer
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param float $percentWidth
-     * @param float $percentHSF3
+     * @param float $percentHeight
      * @param float $positionXPercent
      * @param float $positionYPercent
      * @param string $position
      */
-    public function cropInPercent($percentWidth = 0, $percentHSF3 = 0, $positionXPercent = 0, $positionYPercent = 0, $position = 'LT')
+    public function cropInPercent($percentWidth = 0, $percentHeight = 0, $positionXPercent = 0, $positionYPercent = 0, $position = 'LT')
     {
-        $this->crop(self::UNIT_PERCENT, $percentWidth, $percentHSF3, $positionXPercent, $positionYPercent, $position);
+        $this->crop(self::UNIT_PERCENT, $percentWidth, $percentHeight, $positionXPercent, $positionYPercent, $position);
     }
 
     /**
@@ -966,36 +966,36 @@ class ImageWorkshopLayer
      *
      * @param string $unit
      * @param mixed $width (integer or float)
-     * @param mixed $hSF3 (integer or float)
+     * @param mixed $height (integer or float)
      * @param mixed $positionX (integer or float)
      * @param mixed $positionY (integer or float)
      * @param string $position
      */
-    public function crop($unit = self::UNIT_PIXEL, $width = 0, $hSF3 = 0, $positionX = 0, $positionY = 0, $position = 'LT')
+    public function crop($unit = self::UNIT_PIXEL, $width = 0, $height = 0, $positionX = 0, $positionY = 0, $position = 'LT')
     {
-        if ($width < 0 || $hSF3 < 0) {
-            throw new ImageWorkshopLayerException('You can\'t use negative $width or $hSF3 for "'.__METHOD__.'" method.', static::ERROR_NEGATIVE_NUMBER_USED);
+        if ($width < 0 || $height < 0) {
+            throw new ImageWorkshopLayerException('You can\'t use negative $width or $height for "'.__METHOD__.'" method.', static::ERROR_NEGATIVE_NUMBER_USED);
         }
         
         if ($unit == self::UNIT_PERCENT) {
             $width = round(($width / 100) * $this->width);
-            $hSF3 = round(($hSF3 / 100) * $this->hSF3);
+            $height = round(($height / 100) * $this->height);
 
             $positionX = round(($positionX / 100) * $this->width);
-            $positionY = round(($positionY / 100) * $this->hSF3);
+            $positionY = round(($positionY / 100) * $this->height);
         }
         
-        if (($width != $this->width || $positionX == 0) || ($hSF3 != $this->hSF3 || $positionY == 0)) {
+        if (($width != $this->width || $positionX == 0) || ($height != $this->height || $positionY == 0)) {
             if ($width == 0) {
                 $width = 1;
             }
             
-            if ($hSF3 == 0) {
-                $hSF3 = 1;
+            if ($height == 0) {
+                $height = 1;
             }
             
-            $layerTmp = ImageWorkshop::initVirginLayer($width, $hSF3);
-            $layerClone = ImageWorkshop::initVirginLayer($this->width, $this->hSF3);
+            $layerTmp = ImageWorkshop::initVirginLayer($width, $height);
+            $layerClone = ImageWorkshop::initVirginLayer($this->width, $this->height);
             
             imagedestroy($layerClone->image);
             $layerClone->image = $this->image;
@@ -1008,7 +1008,7 @@ class ImageWorkshopLayer
             
             // update the layer
             $this->width = $layerTmp->getWidth();
-            $this->hSF3 = $layerTmp->getHSF3();
+            $this->height = $layerTmp->getHeight();
             $this->image = $layerTmp->getResult();
             unset($layerTmp);
             unset($layerClone);
@@ -1024,14 +1024,14 @@ class ImageWorkshopLayer
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param integer $positionX
      * @param integer $positionY
      * @param string $position
      */
-    public function cropToAspectRatioInPixel($width = 0, $hSF3 = 0, $positionX = 0, $positionY = 0, $position = 'LT')
+    public function cropToAspectRatioInPixel($width = 0, $height = 0, $positionX = 0, $positionY = 0, $position = 'LT')
     {
-        $this->cropToAspectRatio(self::UNIT_PIXEL, $width, $hSF3, $positionX, $positionY, $position);
+        $this->cropToAspectRatio(self::UNIT_PIXEL, $width, $height, $positionX, $positionY, $position);
     }
 
     /**
@@ -1041,14 +1041,14 @@ class ImageWorkshopLayer
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param float $positionXPercent
      * @param float $positionYPercent
      * @param string $position
      */
-    public function cropToAspectRatioInPercent($width = 0, $hSF3 = 0, $positionXPercent = 0, $positionYPercent = 0, $position = 'LT')
+    public function cropToAspectRatioInPercent($width = 0, $height = 0, $positionXPercent = 0, $positionYPercent = 0, $position = 'LT')
     {
-        $this->cropToAspectRatio(self::UNIT_PERCENT, $width, $hSF3, $positionXPercent, $positionYPercent, $position);
+        $this->cropToAspectRatio(self::UNIT_PERCENT, $width, $height, $positionXPercent, $positionYPercent, $position);
     }
 
     /**
@@ -1059,39 +1059,39 @@ class ImageWorkshopLayer
      *
      * @param string $unit
      * @param integer $width (integer or float)
-     * @param integer $hSF3 (integer or float)
+     * @param integer $height (integer or float)
      * @param mixed $positionX (integer or float)
      * @param mixed $positionY (integer or float)
      * @param string $position
      */
-    public function cropToAspectRatio($unit = self::UNIT_PIXEL, $width = 0, $hSF3 = 0, $positionX = 0, $positionY = 0, $position = 'LT')
+    public function cropToAspectRatio($unit = self::UNIT_PIXEL, $width = 0, $height = 0, $positionX = 0, $positionY = 0, $position = 'LT')
     {
-        if ($width < 0 || $hSF3 < 0) {
-            throw new ImageWorkshopLayerException('You can\'t use negative $width or $hSF3 for "'.__METHOD__.'" method.', static::ERROR_NEGATIVE_NUMBER_USED);
+        if ($width < 0 || $height < 0) {
+            throw new ImageWorkshopLayerException('You can\'t use negative $width or $height for "'.__METHOD__.'" method.', static::ERROR_NEGATIVE_NUMBER_USED);
         }
         
         if ($width == 0) {
             $width = 1;
         }
 
-        if ($hSF3 == 0) {
-            $hSF3 = 1;
+        if ($height == 0) {
+            $height = 1;
         }
 
-        if ($this->width / $this->hSF3 <= $width / $hSF3) {
+        if ($this->width / $this->height <= $width / $height) {
             $newWidth = $this->width;
-            $newHSF3 = round($hSF3 * ($this->width / $width));
+            $newHeight = round($height * ($this->width / $width));
         } else {
-            $newWidth = round($width * ($this->hSF3 / $hSF3));
-            $newHSF3 = $this->hSF3;
+            $newWidth = round($width * ($this->height / $height));
+            $newHeight = $this->height;
         }
         
         if ($unit == self::UNIT_PERCENT) {
             $positionX = round(($positionX / 100) * ($this->width - $newWidth));
-            $positionY = round(($positionY / 100) * ($this->hSF3 - $newHSF3));
+            $positionY = round(($positionY / 100) * ($this->height - $newHeight));
         }
 
-        $this->cropInPixel($newWidth, $newHSF3, $positionX, $positionY, $position);
+        $this->cropInPixel($newWidth, $newHeight, $positionX, $positionY, $position);
     }
 
     /**
@@ -1101,7 +1101,7 @@ class ImageWorkshopLayer
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param integer $positionX
      * @param integer $positionY
      * @param string $position
@@ -1118,7 +1118,7 @@ class ImageWorkshopLayer
      * $position: http://phpimageworkshop.com/doc/22/corners-positions-schema-of-an-image.html
      *
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param integer $positionXPercent
      * @param integer $positionYPercent
      * @param string $position
@@ -1136,7 +1136,7 @@ class ImageWorkshopLayer
      *
      * @param string $unit
      * @param integer $width
-     * @param integer $hSF3
+     * @param integer $height
      * @param integer $positionX
      * @param integer $positionY
      * @param string $position
@@ -1147,7 +1147,7 @@ class ImageWorkshopLayer
         
         if ($unit == self::UNIT_PERCENT) {
             $positionX = round(($positionX / 100) * $this->width);
-            $positionY = round(($positionY / 100) * $this->hSF3);
+            $positionY = round(($positionY / 100) * $this->height);
         }
 
         $this->cropInPixel($narrowSide, $narrowSide, $positionX, $positionY, $position);
@@ -1182,15 +1182,15 @@ class ImageWorkshopLayer
             $this->image = $imageRotated;
 
             $oldWidth = $this->width;
-            $oldHSF3 = $this->hSF3;
+            $oldHeight = $this->height;
 
             $this->width = imagesx($this->image);
-            $this->hSF3 = imagesy($this->image);
+            $this->height = imagesy($this->image);
 
             foreach ($this->layers as $layerId => $layer) {
                 $layerSelfOldCenterPosition = array(
                     'x' => $layer->width / 2,
-                    'y' => $layer->hSF3 / 2,
+                    'y' => $layer->height / 2,
                 );
 
                 $smallImageCenter = array(
@@ -1208,17 +1208,17 @@ class ImageWorkshopLayer
                 $b = $ro * sin(($teta + $degrees) * pi() / 180);
 
                 if ($degrees > 0 && $degrees <= 90) {
-                    $newPositionX = $a - ($this->layers[$layerId]->width / 2) + $oldHSF3 * sin(($degrees * pi()) / 180);
-                    $newPositionY = $b - ($this->layers[$layerId]->hSF3 / 2);
+                    $newPositionX = $a - ($this->layers[$layerId]->width / 2) + $oldHeight * sin(($degrees * pi()) / 180);
+                    $newPositionY = $b - ($this->layers[$layerId]->height / 2);
                 } elseif ($degrees > 90 && $degrees <= 180) {
                     $newPositionX = $a - ($this->layers[$layerId]->width / 2) + $this->width;
-                    $newPositionY = $b - ($this->layers[$layerId]->hSF3 / 2) + $oldHSF3 * (-cos(($degrees) * pi() / 180));
+                    $newPositionY = $b - ($this->layers[$layerId]->height / 2) + $oldHeight * (-cos(($degrees) * pi() / 180));
                 } elseif ($degrees > 180 && $degrees <= 270) {
                     $newPositionX = $a - ($this->layers[$layerId]->width / 2) + $oldWidth * (-cos(($degrees) * pi() / 180));
-                    $newPositionY = $b - ($this->layers[$layerId]->hSF3 / 2) + $this->hSF3;
+                    $newPositionY = $b - ($this->layers[$layerId]->height / 2) + $this->height;
                 } else {
                     $newPositionX = $a - ($this->layers[$layerId]->width / 2);
-                    $newPositionY = $b - ($this->layers[$layerId]->hSF3 / 2) + $oldWidth * (-sin(($degrees) * pi() / 180));
+                    $newPositionY = $b - ($this->layers[$layerId]->height / 2) + $oldWidth * (-sin(($degrees) * pi() / 180));
                 }
 
                 $this->layerPositions[$layerId] = array(
@@ -1247,9 +1247,9 @@ class ImageWorkshopLayer
             }
         }
 
-        $transparentImage = ImageWorkshopLib::generateImage($this->getWidth(), $this->getHSF3());
+        $transparentImage = ImageWorkshopLib::generateImage($this->getWidth(), $this->getHeight());
         
-        ImageWorkshopLib::imageCopyMergeAlpha($transparentImage, $this->image, 0, 0, 0, 0, $this->getWidth(), $this->getHSF3(), $opacity);
+        ImageWorkshopLib::imageCopyMergeAlpha($transparentImage, $this->image, 0, 0, 0, 0, $this->getWidth(), $this->getHeight(), $opacity);
 
         unset($this->image);
         $this->image = $transparentImage;
@@ -1302,21 +1302,21 @@ class ImageWorkshopLayer
             $this->layers[$key] = $layer;
         }
         
-        $temp = ImageWorkshopLib::generateImage($this->width, $this->hSF3);
+        $temp = ImageWorkshopLib::generateImage($this->width, $this->height);
         
         if ($type == 'horizontal') {
-            imagecopyresampled($temp, $this->image, 0, 0, $this->width - 1, 0, $this->width, $this->hSF3, -$this->width, $this->hSF3);
+            imagecopyresampled($temp, $this->image, 0, 0, $this->width - 1, 0, $this->width, $this->height, -$this->width, $this->height);
             $this->image = $temp;
             
             foreach ($this->layerPositions as $layerId => $layerPositions) {
                 $this->changePosition($layerId, $this->width - $this->layers[$layerId]->getWidth() - $layerPositions['x'], $layerPositions['y']);
             }
         } elseif ($type == 'vertical') {
-            imagecopyresampled($temp, $this->image, 0, 0, 0, $this->hSF3 - 1, $this->width, $this->hSF3, $this->width, -$this->hSF3);
+            imagecopyresampled($temp, $this->image, 0, 0, 0, $this->height - 1, $this->width, $this->height, $this->width, -$this->height);
             $this->image = $temp;
             
             foreach ($this->layerPositions as $layerId => $layerPositions) {
-                $this->changePosition($layerId, $layerPositions['x'], $this->hSF3 - $this->layers[$layerId]->getHSF3() - $layerPositions['y']);
+                $this->changePosition($layerId, $layerPositions['x'], $this->height - $this->layers[$layerId]->getHeight() - $layerPositions['y']);
             }
         }
         
@@ -1394,7 +1394,7 @@ class ImageWorkshopLayer
 
             // Layer positions
             if ($this->layerPositions[$layerId]['x'] != 0 || $this->layerPositions[$layerId]['y'] != 0) {
-                $virginLayoutImageTmp = ImageWorkshopLib::generateImage($this->width, $this->hSF3);
+                $virginLayoutImageTmp = ImageWorkshopLib::generateImage($this->width, $this->height);
                 ImageWorkshopLib::mergeTwoImages($virginLayoutImageTmp, $imagesToMerge[$layerLevel], $this->layerPositions[$layerId]['x'], $this->layerPositions[$layerId]['y'], 0, 0);
                 $imagesToMerge[$layerLevel] = $virginLayoutImageTmp;
                 unset($virginLayoutImageTmp);
@@ -1416,7 +1416,7 @@ class ImageWorkshopLayer
             $opacity = 0;
         }
         
-        $backgroundImage = ImageWorkshopLib::generateImage($this->width, $this->hSF3, $backgroundColor, $opacity);
+        $backgroundImage = ImageWorkshopLib::generateImage($this->width, $this->height, $backgroundColor, $opacity);
         ImageWorkshopLib::mergeTwoImages($backgroundImage, $mergedImage);
         $mergedImage = $backgroundImage;
         unset($backgroundImage);
@@ -1548,8 +1548,8 @@ class ImageWorkshopLayer
     {
         $narrowSideWidth = $this->getWidth();
 
-        if ($this->getHSF3() < $narrowSideWidth) {
-            $narrowSideWidth = $this->getHSF3();
+        if ($this->getHeight() < $narrowSideWidth) {
+            $narrowSideWidth = $this->getHeight();
         }
 
         return $narrowSideWidth;
@@ -1564,8 +1564,8 @@ class ImageWorkshopLayer
     {
         $largestSideWidth = $this->getWidth();
 
-        if ($this->getHSF3() > $largestSideWidth) {
-            $largestSideWidth = $this->getHSF3();
+        if ($this->getHeight() > $largestSideWidth) {
+            $largestSideWidth = $this->getHeight();
         }
 
         return $largestSideWidth;
@@ -1612,13 +1612,13 @@ class ImageWorkshopLayer
     }
 
     /**
-     * Getter hSF3
+     * Getter height
      *
      * @return integer
      */
-    public function getHSF3()
+    public function getHeight()
     {
-        return $this->hSF3;
+        return $this->height;
     }
 
     /**
@@ -1710,7 +1710,7 @@ class ImageWorkshopLayer
      */
     public function createNewVarFromBackgroundImage()
     {
-        $virginImage = ImageWorkshopLib::generateImage($this->getWidth(), $this->getHSF3()); // New background image
+        $virginImage = ImageWorkshopLib::generateImage($this->getWidth(), $this->getHeight()); // New background image
         
         ImageWorkshopLib::mergeTwoImages($virginImage, $this->image, 0, 0, 0, 0);
         unset($this->image);
@@ -1750,7 +1750,7 @@ class ImageWorkshopLayer
         $this->layers[$layerId] = $layer;
 
         // Add the layer positions in the main layer
-        $this->layerPositions[$layerId] = ImageWorkshopLib::calculatePositions($this->getWidth(), $this->getHSF3(), $layer->getWidth(), $layer->getHSF3(), $positionX, $positionY, $position);
+        $this->layerPositions[$layerId] = ImageWorkshopLib::calculatePositions($this->getWidth(), $this->getHeight(), $layer->getWidth(), $layer->getHeight(), $positionX, $positionY, $position);
 
         // Update the lastLayerId of the workshop
         $this->lastLayerId = $layerId;
@@ -1822,19 +1822,19 @@ class ImageWorkshopLayer
      * Resize the background of a layer
      *
      * @param integer $newWidth
-     * @param integer $newHSF3
+     * @param integer $newHeight
      */
-    public function resizeBackground($newWidth, $newHSF3)
+    public function resizeBackground($newWidth, $newHeight)
     {
         $oldWidth = $this->width;
-        $oldHSF3 = $this->hSF3;
+        $oldHeight = $this->height;
 
         $this->width = $newWidth;
-        $this->hSF3 = $newHSF3;
+        $this->height = $newHeight;
 
-        $virginLayoutImage = ImageWorkshopLib::generateImage($this->width, $this->hSF3);
+        $virginLayoutImage = ImageWorkshopLib::generateImage($this->width, $this->height);
 
-        imagecopyresampled($virginLayoutImage, $this->image, 0, 0, 0, 0, $this->width, $this->hSF3, $oldWidth, $oldHSF3);
+        imagecopyresampled($virginLayoutImage, $this->image, 0, 0, 0, 0, $this->width, $this->height, $oldWidth, $oldHeight);
 
         unset($this->image);
         $this->image = $virginLayoutImage;

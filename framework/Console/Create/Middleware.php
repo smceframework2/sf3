@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Console\Create;
+namespace EF2\Console\Create;
 
-use SF3\Console\Colors;
+use EF2\Console\Colors;
 
 class Middleware
 {

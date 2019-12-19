@@ -2,16 +2,16 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Security;
+namespace EF2\Security;
 
-use SF3\Http\HttpException;
-use SF3\Sf;
-use SF3\Security\Csrf\Bridge;
-use SF3\Security\Csrf\CsrfInterface;
+use EF2\Http\HttpException;
+use EF2\Ef;
+use EF2\Security\Csrf\Bridge;
+use EF2\Security\Csrf\CsrfInterface;
 
 /**
  * A simple CSRF class to protect forms against CSRF attacks. The class uses
@@ -146,7 +146,7 @@ class Csrf implements CsrfInterface
 
 	public function postControl()
 	{
-		if (Sf::app()->isPost() && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (EF::app()->isPost() && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -160,7 +160,7 @@ class Csrf implements CsrfInterface
 	public function putControl()
 	{
 
-		if (Sf::app()->GetMethod()==='PUT' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (EF::app()->GetMethod()==='PUT' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -172,7 +172,7 @@ class Csrf implements CsrfInterface
 
 	public function deleteControl()
 	{
-		if (Sf::app()->GetMethod()==='DELETE' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (EF::app()->GetMethod()==='DELETE' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -185,7 +185,7 @@ class Csrf implements CsrfInterface
 
 	public function patchControl()
 	{
-		if (Sf::app()->GetMethod()==='PATCH' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (EF::app()->GetMethod()==='PATCH' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -198,7 +198,7 @@ class Csrf implements CsrfInterface
 
 	public function optionsControl()
 	{
-		if (Sf::app()->GetMethod()==='OPTIONS' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
+		if (EF::app()->GetMethod()==='OPTIONS' && !isset($_POST[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_POST[$this->namespace]) && $_POST[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {
@@ -211,7 +211,7 @@ class Csrf implements CsrfInterface
 
 	public function getControl()
 	{
-		if (Sf::app()->isGet() && !isset($_GET[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_GET[$this->namespace]) && $_GET[$this->namespace] != $this->readTokenFromStorage())) {
+		if (EF::app()->isGet() && !isset($_GET[$this->namespace]) || $this->readTokenFromStorage() == false || (isset($_GET[$this->namespace]) && $_GET[$this->namespace] != $this->readTokenFromStorage())) {
 			if ($this->returntype === 'exception') {
 				throw new HttpException(419, "CSRF validation failed.");
 			} else {

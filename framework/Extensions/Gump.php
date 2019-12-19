@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Extensions;
+namespace EF2\Extensions;
 
 use Exception;
 

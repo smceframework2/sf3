@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Security\Csrf;
+namespace EF2\Security\Csrf;
 
 interface CsrfInterface {
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Template\Blade\Concerns;
+namespace EF2\Template\Blade\Concerns;
 
 use Countable;
-use SF3\Template\Blade\Support\Arr;
+use EF2\Template\Blade\Support\Arr;
 
 trait ManagesLoops
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Template\Blade\Compilers\Concerns;
+namespace EF2\Template\Blade\Compilers\Concerns;
 
-use SF3\Template\Blade\Factory as ViewFactory;
+use EF2\Template\Blade\Factory as ViewFactory;
 
 trait CompilesLayouts
 {

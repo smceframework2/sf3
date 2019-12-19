@@ -2,11 +2,11 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Driver;
+namespace EF2\Driver;
 
 class Redis
 {

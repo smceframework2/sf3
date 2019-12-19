@@ -1,16 +1,16 @@
 <?php
 
-namespace SF3\Core;
+namespace EF2\Core;
 
-use SF3\Core\Router\Exception;
-use SF3\Template\blade\FileViewFinder;
-use SF3\Template\blade\Factory;
-use SF3\Template\blade\Compilers\BladeCompiler;
-use SF3\Template\blade\Engines\CompilerEngine;
-use SF3\Template\blade\Filesystem;
-use SF3\Template\blade\Engines\EngineResolver;
-use SF3\Http\HttpException;
-use SF3\Template\templateengine;
+use EF2\Core\Router\Exception;
+use EF2\Template\blade\FileViewFinder;
+use EF2\Template\blade\Factory;
+use EF2\Template\blade\Compilers\BladeCompiler;
+use EF2\Template\blade\Engines\CompilerEngine;
+use EF2\Template\blade\Filesystem;
+use EF2\Template\blade\Engines\EngineResolver;
+use EF2\Http\HttpException;
+use EF2\Template\templateengine;
 
 class Template
 {
@@ -25,7 +25,7 @@ class Template
 
 	function __construct($template="Blade")
 	{
-		$className = 'SF3\Template\\' . $template;
+		$className = 'EF2\Template\\' . $template;
 		$this->engine = new $className();
 	}
 

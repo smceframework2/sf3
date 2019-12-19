@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template;
+namespace EF2\Template;
 
 interface TemplateEngine
 {

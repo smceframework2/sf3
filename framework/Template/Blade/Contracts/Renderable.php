@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade\Contracts;
+namespace EF2\Template\Blade\Contracts;
 
 interface Renderable
 {

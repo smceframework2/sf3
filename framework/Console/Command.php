@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Console;
+namespace EF2\Console;
 
-use SF3\Console\Colors;
+use EF2\Console\Colors;
 
 class Command
 {

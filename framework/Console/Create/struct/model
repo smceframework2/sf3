@@ -1,6 +1,6 @@
 <?php
 
-use SF3\Core\Model;
+use EF2\Core\Model;
 
 class [name] extends Model
 {

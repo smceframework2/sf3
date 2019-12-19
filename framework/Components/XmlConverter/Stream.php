@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Components\XmlConverter;
+namespace EF2\Components\XmlConverter;
 
 
 class Stream

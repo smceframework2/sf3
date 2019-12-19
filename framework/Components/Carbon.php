@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SF3\Components;
+namespace EF2\Components;
 
 use Carbon\Carbon as C;
 

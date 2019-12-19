@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Db;
+namespace EF2\Db;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use SF3\Db\Eloquent\Criteria;
+use EF2\Db\Eloquent\Criteria;
 
 class Eloquent
 {

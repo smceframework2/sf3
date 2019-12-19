@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Model\Eloquent;
+namespace EF2\Model\Eloquent;
 
 use Illuminate\Database\Eloquent\SoftDeletes as  Sfdeletes;
 

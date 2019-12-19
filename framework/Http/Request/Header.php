@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Http\Request;
+namespace EF2\Http\Request;
 
-use SF3\Http\Security;
+use EF2\Http\Security;
 
 class Header
 {
@@ -25,7 +25,10 @@ class Header
 				}
 			}
 		} else {
-			return $this->headers = getallheaders();
+
+		    $header=getallheaders();
+            $header=array_merge($header,array_change_key_case(getallheaders(),CASE_LOWER));
+			return $this->headers = $header;
 		}
 	}
 

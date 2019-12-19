@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Db;
+namespace EF2\Db;
 
 
 use MongoClient;

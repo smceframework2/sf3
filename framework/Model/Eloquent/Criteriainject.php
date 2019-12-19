@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Model\Eloquent;
+namespace EF2\Model\Eloquent;
 
 use Illuminate\Database\Capsule\Manager as DB;
-use SF3\Db\Criteria;
+use EF2\Db\Criteria;
 
 class Criteriainject
 {

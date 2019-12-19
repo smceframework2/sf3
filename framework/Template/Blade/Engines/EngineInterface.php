@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade\Engines;
+namespace EF2\Template\Blade\Engines;
 
 interface EngineInterface
 {

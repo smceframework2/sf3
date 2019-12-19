@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\TemplateEngines;
+namespace EF2\TemplateEngines;
 
 abstract class Engine
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Process;
+namespace EF2\Process;
 
 use Closure;
-use SF3\Process\Thread;
+use EF2\Process\Thread;
 
 class EventLoop
 {

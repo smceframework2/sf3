@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Extensions\Log;
+namespace EF2\Extensions\Log;
 
 use Monolog\Handler\StreamHandler;
 

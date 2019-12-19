@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Template\Blade\Support;
+namespace EF2\Template\Blade\Support;
 
 class Str
 {

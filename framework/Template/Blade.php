@@ -1,15 +1,15 @@
 <?php
 
-namespace SF3\Template;
+namespace EF2\Template;
 
-use SF3\Core\Router\Exception;
-use SF3\Template\Blade\FileViewFinder;
-use SF3\Template\Blade\Factory;
-use SF3\Template\Blade\Compilers\BladeCompiler;
-use SF3\Template\Blade\Engines\CompilerEngine;
-use SF3\Template\Blade\Filesystem;
-use SF3\Template\Blade\Engines\EngineResolver;
-use SF3\Http\HttpException;
+use EF2\Core\Router\Exception;
+use EF2\Template\Blade\FileViewFinder;
+use EF2\Template\Blade\Factory;
+use EF2\Template\Blade\Compilers\BladeCompiler;
+use EF2\Template\Blade\Engines\CompilerEngine;
+use EF2\Template\Blade\Filesystem;
+use EF2\Template\Blade\Engines\EngineResolver;
+use EF2\Http\HttpException;
 
 class Blade implements TemplateEngine
 {
@@ -62,7 +62,7 @@ class Blade implements TemplateEngine
 			}
 		}
 
-		require_once SF3_PATH . "/Template/Blade/helpers.php";
+		require_once EF2_PATH . "/Template/Blade/helpers.php";
 
 		$file     = new Filesystem;
 		$compiler = new BladeCompiler($file, $this->cache_path);

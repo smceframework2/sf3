@@ -1,10 +1,10 @@
 <?php
 
-namespace SF3\Components;
+namespace EF2\Components;
 
-use SF3\Components\XmlConverter\XmlToArray;
+use EF2\Components\XmlConverter\XmlToArray;
 use SimpleXMLElement;
-use SF3\Components\XmlConverter\ArrayToXml;
+use EF2\Components\XmlConverter\ArrayToXml;
 
 class XmlConverter
 {

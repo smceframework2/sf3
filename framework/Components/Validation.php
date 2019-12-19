@@ -2,16 +2,16 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Components;
+namespace EF2\Components;
 
-use SF3\App;
-use SF3\Sf;
-use SF3\Extensions\Gump;
-use SF3\Http\Request;
+use EF2\App;
+use EF2\Ef;
+use EF2\Extensions\Gump;
+use EF2\Http\Request;
 
 class Validation
 {
@@ -119,7 +119,7 @@ class Validation
 	{
 		if (is_array($_GET) && count($_GET) > 0)
 			$_GET = $this->gump->filter($_GET, $data);
-		if (Sf::app()->GetMethod() != 'GET') {
+		if (Ef::app()->GetMethod() != 'GET') {
 			$_POST = $this->gump->filter($_POST, $data);
 		}
 		if ($this->request) {

@@ -2,18 +2,18 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
-namespace SF3\Core;
+namespace EF2\Core;
 
-use SF3\Sf;
+use EF2\Ef;
 
 class Middleware
 {
 	public function redirect($str, $term = 0)
 	{
 
-		Sf::app()->redirect($str,$term);
+		Ef::app()->redirect($str,$term);
 	}
 }

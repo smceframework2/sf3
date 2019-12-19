@@ -1,9 +1,9 @@
 <?php
 
-namespace SF3\Http\Curl;
+namespace EF2\Http\Curl;
 
-use SF3\Http\Curl\ArrayUtil;
-use SF3\Http\Curl\Decoder;
+use EF2\Http\Curl\ArrayUtil;
+use EF2\Http\Curl\Decoder;
 
 class Curl
 {

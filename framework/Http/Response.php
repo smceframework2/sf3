@@ -2,11 +2,11 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Http;
+namespace EF2\Http;
 
 
 class Response
@@ -63,7 +63,7 @@ class Response
 
     public function json($data)
     {
-        header("application/json");
+        header('Content-Type: application/json;charset=utf-8');
         $this->putFormat(json_encode($data));
     }
     

@@ -2,17 +2,17 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Http;
+namespace EF2\Http;
 
-use SF3\Http\Request\Get;
-use SF3\Http\Request\Post;
-use SF3\Http\Request\Filter;
-use SF3\Http\Request\Header;
-use SF3\Components\Validation;
+use EF2\Http\Request\Get;
+use EF2\Http\Request\Post;
+use EF2\Http\Request\Filter;
+use EF2\Http\Request\Header;
+use EF2\Components\Validation;
 
 class Input
 {

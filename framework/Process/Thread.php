@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Process;
+namespace EF2\Process;
 
 /**
  * Multi-thread / task manager

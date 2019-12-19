@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Http\Request;
+namespace EF2\Http\Request;
 
-use SF3\Http\Security;
+use EF2\Http\Security;
 
 class Get
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Console;
+namespace EF2\Console;
 
-use SF3\Console\Colors;
+use EF2\Console\Colors;
 
 class Load
 {
@@ -25,7 +25,7 @@ class Load
 		foreach ($this->commands as $value)
 		{
 
-			if (!class_exists($value) ||  !is_subclass_of($value, 'SF3\Console\Command')) {
+			if (!class_exists($value) ||  !is_subclass_of($value, 'EF2\Console\Command')) {
 
 				echo "\n".Colors::string($value." not console command","red")."\n\n";
 				exit;

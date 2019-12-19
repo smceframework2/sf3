@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Security\Csrf\Adaptor;
+namespace EF2\Security\Csrf\Adaptor;
 
 class RedisAdaptor
 {

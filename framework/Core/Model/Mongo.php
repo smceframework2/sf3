@@ -1,8 +1,8 @@
 <?php
 
-namespace SF3\Core\Model;
+namespace EF2\Core\Model;
 
-use SF3\Db\MongoCli as M;
+use EF2\Db\MongoCli as M;
 use MongoCollection;
 use MongoDate;
 use MongoId;

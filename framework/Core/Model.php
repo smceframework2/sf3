@@ -2,13 +2,13 @@
 
 /**
  *
- * @author SF3
- * @copyright 2017 SF3Framework
+ * @author Eight
+ * @copyright 2017 EightFramework 2
  */
 
-namespace SF3\Core;
+namespace EF2\Core;
 
-use SF3\Model\Eloquent;
+use EF2\Model\Eloquent;
 
 class Model extends Eloquent
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SF3\Components\PHPImageWorkshop\Exif;
+namespace EF2\Components\PHPImageWorkshop\Exif;
 
 /**
  * Container for all EXIF orientations.
